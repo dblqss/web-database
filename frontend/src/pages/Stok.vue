@@ -16,7 +16,9 @@ const gambar = ref('')
 // 🔥 FETCH DATA
 const fetchData = async () => {
   try {
-    const res = await fetch('https://myshop42.infinityfreeapp.com/produk.php')
+    const res = await fetch(
+  'https://corsproxy.io/?https://myshop42.infinityfreeapp.com/produk.php'
+)
 
     if (!res.ok) {
       throw new Error('Response tidak valid')
@@ -51,10 +53,12 @@ const tambahProduk = async () => {
   formData.append('gambar', gambar.value || '')
 
   try {
-    const res = await fetch('https://myshop42.infinityfreeapp.com/tambah_produk.php', {
-      method: 'POST',
-      body: formData
-    })
+    const res = await fetch(
+  'https://corsproxy.io/?https://myshop42.infinityfreeapp.com/tambah_produk.php',
+{
+  method: 'POST',
+  body: formData
+})
 
     if (!res.ok) {
       throw new Error('Gagal request ke server')
@@ -89,10 +93,12 @@ const hapusProduk = async (id) => {
   formData.append('id', id)
 
   try {
-    const res = await fetch('https://myshop42.infinityfreeapp.com/hapus_produk.php', {
-      method: 'POST',
-      body: formData
-    })
+    const res = await fetch(
+  'https://corsproxy.io/?https://myshop42.infinityfreeapp.com/hapus_produk.php',
+{
+  method: 'POST',
+  body: formData
+})
 
     if (!res.ok) {
       throw new Error('Gagal request ke server')

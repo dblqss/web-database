@@ -22,7 +22,9 @@ const editDeskripsi = ref('') // ✅ TAMBAHAN
 // FETCH DATA
 const fetchData = async () => {
   try {
-    const res = await fetch('https://myshop42.infinityfreeapp.com/produk.php')
+    const res = await fetch(
+  'https://corsproxy.io/?https://myshop42.infinityfreeapp.com/produk.php'
+)
 
     if (!res.ok) {
       throw new Error('Response tidak valid')
@@ -73,10 +75,12 @@ const updateProduk = async () => {
   formData.append('gambar', produk.value.gambar)
 
   try {
-    const res = await fetch('https://myshop42.infinityfreeapp.com/update_produk.php', {
-      method: 'POST',
-      body: formData
-    })
+    const res = await fetch(
+  'https://corsproxy.io/?https://myshop42.infinityfreeapp.com/update_produk.php',
+{
+  method: 'POST',
+  body: formData
+})
 
     const result = await res.json()
 
