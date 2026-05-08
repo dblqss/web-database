@@ -16,7 +16,7 @@ const gambar = ref('')
 // 🔥 FETCH DATA
 const fetchData = async () => {
   try {
-    const res = await fetch("https://myshop42.infinityfreeapp.com/produk.php')
+    const res = await fetch('https://myshop42.infinityfreeapp.com/api.php')
 
     if (!res.ok) {
       throw new Error('Response tidak valid')
