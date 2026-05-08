@@ -4,7 +4,7 @@ import { ref, onMounted } from 'vue'
 const transaksi = ref([])
 
 onMounted(async () => {
-  const res = await fetch('http://https://myshop42.infinityfreeapp.com/api.php')
+  const res = await fetch('https://myshop42.infinityfreeapp.com/api.php')
   transaksi.value = await res.json()
 })
 </script>
