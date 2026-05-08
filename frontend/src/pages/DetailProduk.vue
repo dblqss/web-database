@@ -76,8 +76,8 @@ const updateProduk = async () => {
 
   try {
     const res = await fetch(
-  'https://myshop42.infinityfreeapp.com/produk.php'
-)
+  'https://myshop42.infinityfreeapp.com/update_produk.php',
+{
   method: 'POST',
   body: formData
 })
