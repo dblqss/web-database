@@ -1,37 +1,47 @@
 <?php
+
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type");
+header("Content-Type: application/json");
 
-if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     http_response_code(200);
     exit();
 }
-?>
 
-header("Content-Type: application/json");
-$conn = mysqli_connect("https://myshop42.infinityfreeapp.com", "root", "", "ecommerce");
+$conn = mysqli_connect(
+    "sql309.infinityfree.com",
+    "if0_41865158",
+    "9qORFm1XqWpPx7",
+    "if0_41865158_web"
+);
 
 if (!$conn) {
-    echo json_encode(["status" => "error", "message" => "Koneksi gagal"]);
+    echo json_encode([
+        "status" => "error",
+        "message" => mysqli_connect_error()
+    ]);
     exit;
 }
 
-// ambil data dari request
-$nama = $_POST['nama_produk'];
-$harga = $_POST['harga'];
-$stok = $_POST['stok'];
-$gambar = $_POST['gambar']; // sementara text dulu (nama file)
-$deskripsi = $_POST['deskripsi'] ?? ''; // ✅ TAMBAHAN
+$nama = $_POST['nama_produk'] ?? '';
+$harga = $_POST['harga'] ?? '';
+$stok = $_POST['stok'] ?? '';
+$gambar = $_POST['gambar'] ?? '';
+$deskripsi = $_POST['deskripsi'] ?? '';
 
-// query insert
-$query = mysqli_query($conn, 
-  "INSERT INTO products (nama_produk, harga, stok, gambar, deskripsi)
-   VALUES ('$nama', '$harga', '$stok', '$gambar', '$deskripsi')"
+$query = mysqli_query($conn,
+    "INSERT INTO products 
+    (nama_produk, harga, stok, gambar, deskripsi)
+    VALUES
+    ('$nama', '$harga', '$stok', '$gambar', '$deskripsi')"
 );
 
 if ($query) {
-    echo json_encode(["status" => "success"]);
+    echo json_encode([
+        "status" => "success"
+    ]);
 } else {
     echo json_encode([
         "status" => "error",
