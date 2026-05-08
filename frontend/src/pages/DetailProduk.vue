@@ -23,7 +23,7 @@ const editDeskripsi = ref('') // ✅ TAMBAHAN
 const fetchData = async () => {
   try {
     const res = await fetch(
-  'https://corsproxy.io/?https://myshop42.infinityfreeapp.com/produk.php'
+  'https://myshop42.infinityfreeapp.com/produk.php'
 )
 
     if (!res.ok) {
@@ -76,7 +76,7 @@ const updateProduk = async () => {
 
   try {
     const res = await fetch(
-  'https://corsproxy.io/?https://myshop42.infinityfreeapp.com/update_produk.php',
+  'https://myshop42.infinityfreeapp.com/update_produk.php',
 {
   method: 'POST',
   body: formData
