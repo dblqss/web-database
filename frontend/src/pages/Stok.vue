@@ -54,8 +54,8 @@ const tambahProduk = async () => {
 
   try {
     const res = await fetch(
-  'https://myshop42.infinityfreeapp.com/tambah_produk.php',
-{
+  'https://myshop42.infinityfreeapp.com/tambah_produk.php'
+)
   method: 'POST',
   body: formData
 })
@@ -94,8 +94,8 @@ const hapusProduk = async (id) => {
 
   try {
     const res = await fetch(
-  'https://myshop42.infinityfreeapp.com/hapus_produk.php',
-{
+  'https://myshop42.infinityfreeapp.com/hapus_produk.php'
+)
   method: 'POST',
   body: formData
 })
