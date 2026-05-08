@@ -14,13 +14,10 @@ if (!$conn) {
     exit;
 }
 
-// 🔧 set charset biar aman encoding
 mysqli_set_charset($conn, "utf8");
 
-// 🔧 query
-$query = mysqli_query($conn, "SELECT id, nama_produk, harga, stok, gambar, deskripsi FROM products");
+$query = mysqli_query($conn, "SELECT * FROM products");
 
-// 🔧 cek error query (tanpa ubah struktur output sukses)
 if (!$query) {
     echo json_encode(["error" => mysqli_error($conn)]);
     exit;
@@ -32,5 +29,5 @@ while ($row = mysqli_fetch_assoc($query)) {
     $data[] = $row;
 }
 
-// 🔧 tetap output array (TIDAK DIUBAH)
 echo json_encode($data);
+?>
