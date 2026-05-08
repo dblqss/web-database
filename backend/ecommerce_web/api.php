@@ -4,7 +4,12 @@ header("Access-Control-Allow-Methods: GET, POST, DELETE, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type");
 header("Content-Type: application/json");
 
-$conn = mysqli_connect("localhost", "root", "", "ecommerce");
+$conn = mysqli_connect(
+  "sql309.infinityfree.com",
+  "if0_41865158",
+  "9qORFm1XqWpPx7",
+  "if0_41865158_web"
+);
 
 if (!$conn) {
     echo json_encode(["error" => "Koneksi gagal"]);

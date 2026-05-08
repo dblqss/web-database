@@ -16,7 +16,7 @@ const gambar = ref('')
 // 🔥 FETCH DATA
 const fetchData = async () => {
   try {
-    const res = await fetch('http://localhost/ecommerce_web/produk.php')
+    const res = await fetch('http://https://myshop42.infinityfreeapp.com/produk.php')
 
     if (!res.ok) {
       throw new Error('Response tidak valid')
@@ -51,7 +51,7 @@ const tambahProduk = async () => {
   formData.append('gambar', gambar.value || '')
 
   try {
-    const res = await fetch('http://localhost/ecommerce_web/tambah_produk.php', {
+    const res = await fetch('http://https://myshop42.infinityfreeapp.com/tambah_produk.php', {
       method: 'POST',
       body: formData
     })
@@ -89,7 +89,7 @@ const hapusProduk = async (id) => {
   formData.append('id', id)
 
   try {
-    const res = await fetch('http://localhost/ecommerce_web/hapus_produk.php', {
+    const res = await fetch('http://https://myshop42.infinityfreeapp.com/hapus_produk.php', {
       method: 'POST',
       body: formData
     })
@@ -202,7 +202,7 @@ const goDetail = (id) => {
         <div class="aspect-square bg-[#fffaf3] rounded-xl overflow-hidden mb-3">
           <img 
             :src="p.gambar 
-              ? 'http://localhost/ecommerce_web/uploads/' + p.gambar 
+              ? 'http://https://myshop42.infinityfreeapp.com/uploads/' + p.gambar 
               : 'https://via.placeholder.com/300'"
             class="w-full h-full object-cover hover:scale-105 transition"
           />

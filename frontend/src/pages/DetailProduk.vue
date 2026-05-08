@@ -22,7 +22,7 @@ const editDeskripsi = ref('') // ✅ TAMBAHAN
 // FETCH DATA
 const fetchData = async () => {
   try {
-    const res = await fetch('http://localhost/ecommerce_web/produk.php')
+    const res = await fetch('http://https://myshop42.infinityfreeapp.com/produk.php')
 
     if (!res.ok) {
       throw new Error('Response tidak valid')
@@ -73,7 +73,7 @@ const updateProduk = async () => {
   formData.append('gambar', produk.value.gambar)
 
   try {
-    const res = await fetch('http://localhost/ecommerce_web/update_produk.php', {
+    const res = await fetch('http://https://myshop42.infinityfreeapp.com/update_produk.php', {
       method: 'POST',
       body: formData
     })
@@ -116,7 +116,7 @@ const updateProduk = async () => {
         <div class="aspect-square bg-[#fffaf3] rounded-xl overflow-hidden">
           <img 
             :src="produk.gambar 
-              ? 'http://localhost/ecommerce_web/uploads/' + produk.gambar 
+              ? 'http://https://myshop42.infinityfreeapp.com/uploads/' + produk.gambar 
               : 'https://via.placeholder.com/300'"
             class="w-full h-full object-cover"
           />
