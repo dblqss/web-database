@@ -1,37 +1,58 @@
 <?php
+
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type");
-
 header("Content-Type: application/json");
 
+// HANDLE PREFLIGHT OPTIONS
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(200);
+    exit();
+}
+
 $conn = mysqli_connect(
-  "sql309.infinityfree.com",
-  "if0_41865158",
-  "9qORFm1XqWpPx7",
-  "if0_41865158_web"
+    "sql309.infinityfree.com",
+    "if0_41865158",
+    "9qORFm1XqWpPx7",
+    "if0_41865158_web"
 );
 
 if (!$conn) {
-    echo json_encode(["error" => "Koneksi gagal"]);
+    echo json_encode([
+        "error" => mysqli_connect_error()
+    ]);
     exit;
 }
+
+mysqli_set_charset($conn, "utf8");
 
 // =====================
 // DELETE
 // =====================
 if (isset($_GET['delete'])) {
+
     $id = intval($_GET['delete']);
 
-    mysqli_query($conn, "DELETE FROM orders WHERE id = $id");
+    $delete = mysqli_query($conn, "DELETE FROM orders WHERE id = $id");
 
-    echo json_encode(["status" => "deleted"]);
+    if ($delete) {
+        echo json_encode([
+            "status" => "deleted"
+        ]);
+    } else {
+        echo json_encode([
+            "error" => mysqli_error($conn)
+        ]);
+    }
+
     exit;
 }
 
 // =====================
-// READ (JOIN)
+// READ
 // =====================
+
 $query = mysqli_query($conn, "
 SELECT 
     o.id,
@@ -47,6 +68,13 @@ JOIN products p ON od.product_id = p.id
 JOIN payments pay ON o.id = pay.order_id
 ");
 
+if (!$query) {
+    echo json_encode([
+        "error" => mysqli_error($conn)
+    ]);
+    exit;
+}
+
 $data = [];
 
 while ($row = mysqli_fetch_assoc($query)) {
@@ -54,3 +82,5 @@ while ($row = mysqli_fetch_assoc($query)) {
 }
 
 echo json_encode($data);
+
+?>
