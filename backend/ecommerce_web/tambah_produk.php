@@ -2,7 +2,7 @@
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json");
 
-$conn = mysqli_connect("localhost", "root", "", "ecommerce");
+$conn = mysqli_connect("https://myshop42.infinityfreeapp.com", "root", "", "ecommerce");
 
 if (!$conn) {
     echo json_encode(["status" => "error", "message" => "Koneksi gagal"]);
