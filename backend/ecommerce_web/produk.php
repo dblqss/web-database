@@ -1,4 +1,5 @@
 <?php
+
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json");
 
@@ -10,8 +11,9 @@ $conn = mysqli_connect(
 );
 
 if (!$conn) {
-    echo json_encode(["error" => "Koneksi database gagal"]);
-    exit;
+    die(json_encode([
+        "error" => mysqli_connect_error()
+    ]));
 }
 
 mysqli_set_charset($conn, "utf8");
@@ -19,8 +21,9 @@ mysqli_set_charset($conn, "utf8");
 $query = mysqli_query($conn, "SELECT * FROM products");
 
 if (!$query) {
-    echo json_encode(["error" => mysqli_error($conn)]);
-    exit;
+    die(json_encode([
+        "sql_error" => mysqli_error($conn)
+    ]));
 }
 
 $data = [];
@@ -30,4 +33,5 @@ while ($row = mysqli_fetch_assoc($query)) {
 }
 
 echo json_encode($data);
+
 ?>
