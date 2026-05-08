@@ -7,6 +7,9 @@ const produk = ref([])
 const loading = ref(true)
 const error = ref(null)
 
+// 🔥 BASE URL API
+const BASE_URL = 'https://myshop42.infinityfreeapp.com'
+
 // 🔥 FORM STATE
 const nama = ref('')
 const harga = ref('')
@@ -16,9 +19,7 @@ const gambar = ref('')
 // 🔥 FETCH DATA
 const fetchData = async () => {
   try {
-    const res = await fetch(
-  'https://myshop42.infinityfreeapp.com/produk.php'
-)
+    const res = await fetch(`${BASE_URL}/produk.php`)
 
     if (!res.ok) {
       throw new Error('Response tidak valid')
@@ -54,8 +55,7 @@ const tambahProduk = async () => {
 
   try {
     const res = await fetch(
-  'https://myshop42.infinityfreeapp.com/tambah_produk.php',
-{
+  `${BASE_URL}/tambah_produk.php`, {
   method: 'POST',
   body: formData
 })
@@ -94,8 +94,7 @@ const hapusProduk = async (id) => {
 
   try {
     const res = await fetch(
-  'https://myshop42.infinityfreeapp.com/hapus_produk.php',
-{
+  `${BASE_URL}/hapus_produk.php`, {
   method: 'POST',
   body: formData
 })
@@ -208,7 +207,7 @@ const goDetail = (id) => {
         <div class="aspect-square bg-[#fffaf3] rounded-xl overflow-hidden mb-3">
           <img 
             :src="p.gambar 
-              ? 'https://myshop42.infinityfreeapp.com/uploads/' + p.gambar 
+              ? BASE_URL + '/uploads/' + p.gambar 
               : 'https://via.placeholder.com/300'"
             class="w-full h-full object-cover hover:scale-105 transition"
           />

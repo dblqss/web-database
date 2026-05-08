@@ -5,6 +5,9 @@ import { useRoute } from 'vue-router'
 const route = useRoute()
 const produk = ref(null)
 
+// 🔥 BASE URL API
+const BASE_URL = 'https://myshop42.infinityfreeapp.com'
+
 // 🔔 NOTIF STATE
 const showNotif = ref(false)
 const notifText = ref('')
@@ -22,9 +25,7 @@ const editDeskripsi = ref('') // ✅ TAMBAHAN
 // FETCH DATA
 const fetchData = async () => {
   try {
-    const res = await fetch(
-  'https://myshop42.infinityfreeapp.com/produk.php'
-)
+    const res = await fetch(`${BASE_URL}/produk.php`)
 
     if (!res.ok) {
       throw new Error('Response tidak valid')
@@ -76,8 +77,7 @@ const updateProduk = async () => {
 
   try {
     const res = await fetch(
-  'https://myshop42.infinityfreeapp.com/update_produk.php',
-{
+  `${BASE_URL}/update_produk.php`, {
   method: 'POST',
   body: formData
 })
@@ -120,7 +120,7 @@ const updateProduk = async () => {
         <div class="aspect-square bg-[#fffaf3] rounded-xl overflow-hidden">
           <img 
             :src="produk.gambar 
-              ? 'https://myshop42.infinityfreeapp.com/uploads/' + produk.gambar 
+              ? BASE_URL + '/uploads/' + produk.gambar 
               : 'https://via.placeholder.com/300'"
             class="w-full h-full object-cover"
           />
